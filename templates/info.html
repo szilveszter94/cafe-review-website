@@ -1,0 +1,166 @@
+{% include "header.html" %}
+
+
+        <div class="container">
+          <div class="section-heading">
+            <h2>{{this_cafe.name}}</h2>
+            <div class="line-dec"></div>
+            <span
+              >{{this_cafe.description}}</span
+            >
+          </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="right-text">
+                  <h4>Productivity</h4>
+                    {% if this_cafe.has_wifi: %}
+                    <h4><i class="fa fa-wifi"> Stable Wi-Fi</i> <i class="fa fa-check"></i></h4>
+                    {% else: %}
+                    <h4><i class="fa fa-wifi"> <s>Stable Wi-Fi</s></i></h4>
+                    {% endif %}
+                    {% if this_cafe.has_toilet: %}
+                    <h4><i class="fa fa-toilet"> Toilet</i> <i class="fa fa-check"></i></h4>
+                    {% else: %}
+                    <h4><i class="fa fa-toilet"> <s>Toilet</s></i></h4>
+                    {% endif %}
+                    {% if this_cafe.has_sockets: %}
+                    <h4><i class="fa fa-plug"> Sockets</i> <i class="fa fa-check"></i></h4>
+                    {% else: %}
+                    <h4><i class="fa fa-plug"> <s>Sockets</s></i></h4>
+                    {% endif %}
+                    <h4><i class="fa fa-dollar"> {{this_cafe.coffee_price}}/coffee</i></h4>
+                    {% if this_cafe.can_take_calls: %}
+                    <h4><i class="fa fa-headset"> Video/audio calls</i> <i class="fa fa-check"></i></h4>
+                    {% else: %}
+                    <h4><i class="fa fa-headset"> <s>Video/audio calls</s></i></h4>
+                    {% endif %}
+                    {% if this_cafe.can_pay_with_card: %}
+                    <h4><i style="font-weight:900;" class="fa fa-credit-card"> Credit card</i> <i class="fa fa-check"></i></h4>
+                    {% else: %}
+                    <h4><i style="font-weight:900;" class="fa fa-credit-card"> <s>Credit card</s></i></h4>
+                    {% endif %}
+                    {% if this_cafe.seats >= 25: %}
+                    <h4><i class="fa fa-expand"> Spacious</i> <i class="fa fa-check"></i></h4>
+                    {% else: %}
+                    <h4><i class="fa fa-expand"> <s>Spacious</s></i></h4>
+                    {% endif %}
+                    <h4><i class="fa fa-star"> {{this_cafe.rating/2}}</i></h4>
+
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="left-image">
+                  <img src="{{this_cafe.img_url}}" alt="" />
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="left-image">
+                  <a href="{{this_cafe.map_url}}">
+                    <p>Location: {{this_cafe.location}}, {{this_cafe.city}}</p>
+                  </a>
+
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="left-image">
+                  <div id="map"></div>
+                </div>
+              </div>
+              {% if current_user.id == 1 %}
+                  <div class="col-md-6">
+              <div class="white-button">
+                <div class="button-padding">
+                  <a href="{{url_for('delete', id=this_cafe.id)}}">Delete Cafe</a>
+                    <a href="{{url_for('edit', id=this_cafe.id)}}">Edit Cafe</a>
+                  </div>
+                  </div>
+                    </div>
+              {% endif %}
+              </div>
+          </div>
+              <div class="section-heading">
+                  <h2>Reviews</h2>
+           </div>
+              {% for i in comments %}
+              <div class="right-image-post">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="left-text">
+                  <h5><img class="commenterImage" src="{{ i.comment_author.email | gravatar }}"/>{{i.comment_author.nickname}}</h5>
+                  <i>{{i.date}}</i>
+                  <p>{{i.text}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+              {% endfor %}
+              <section class="container contact-me">
+                <div class="right-image-post">
+                <form id="contact" action="" method="post">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <fieldset>
+                        <textarea
+                          name="message"
+                          rows="6"
+                          class="form-control"
+                          id="message"
+                          placeholder="Your comment..."
+                          required=""
+                        ></textarea>
+                      </fieldset>
+                    </div>
+                    <div class="col-md-12">
+                      <fieldset>
+                        {% if current_user.is_authenticated %}
+                        <button type="submit" id="form-submit" class="button">
+                          Submit comment
+                        </button>
+                        {% else %}
+                        <a href="{{url_for('login_register')}}">
+                        <button type="button" title="Join and leave a comment" class="button">
+                          Submit comment
+                        </button>
+                        </a>
+                        {% endif %}
+                      </fieldset>
+                    </div>
+                  </div>
+                </form>
+              </div>
+      </section>
+
+
+
+        <script>
+      function initMap() {
+        // [START maps_add_map_instantiate_map]
+        // The location of Uluru
+        const uluru = { lat: {{this_cafe.latitude}}, lng: {{this_cafe.longitude}} };
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 14,
+          center: uluru,
+        });
+        // [END maps_add_map_instantiate_map]
+        // [START maps_add_map_instantiate_marker]
+        // The marker, positioned at Uluru
+        const marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+        });
+        // [END maps_add_map_instantiate_marker]
+      }
+
+      window.initMap = initMap;
+      // [END maps_add_map]
+    </script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDp6QklFI7PspZwGhdWv4xTYRmN1gh_kk&callback=initMap&v=weekly"
+      defer
+    ></script>
+
+
+{% include "footer.html" %}

@@ -1,0 +1,54 @@
+{% include "header.html" %}
+
+<div class="container">
+          <div class="section-heading">
+            <h2>Cities</h2>
+            <div class="line-dec"></div>
+
+          </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="right-text">
+                  <form method="POST" action="" class="contactForm">
+  <div class="dropdown">
+        <div class="select">
+          <span>Select Country</span>
+          <i class="fa fa-chevron-left"></i>
+        </div>
+        <input type="hidden" name="gender">
+        <ul class="dropdown-menu">
+            {% for i in country_list %}
+          <li id="{{i}}">{{i}}</li>
+            {% endfor %}
+        </ul>
+      </div>
+      <button type="submit" id="form-submit" class="button">
+          Show cities
+        </button>
+</form>
+
+
+                </div>
+              </div>
+              </div>
+
+    <div class="section-heading">
+        {% for i in city_list %}
+        <div class="col-md-6">
+            <div class="button-padding">
+    <a href="{{url_for('sorted_cafe', id=i)}}">
+        <button type="button" class="button">{{i}}</button>
+    </a>
+    </div>
+            </div>
+        {% endfor %}
+        </div>
+
+                  </div>
+
+
+
+
+
+
+{% include "footer.html" %}

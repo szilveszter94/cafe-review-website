@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Contact Form 03</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <link rel="icon" href="{{ url_for('static', filename='assets/images/favicon.ico') }}">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="{{url_for('static', filename='assets/css/style.css')}}">
+
+</head>
+
+<body>
+  <section class="ftco-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center mb-5">
+          <h2 class="heading-section">Add new coffee</h2>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+          <div class="wrapper">
+            <div class="contact-wrap w-100 p-md-5 p-4">
+              <form method="POST" action="{{url_for('suggest')}}" class="contactForm">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="label" for="name">Coffee Name</label>
+                      <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="label" for="map_url">Map URL</label>
+                      <input type="url" class="form-control" name="map_url" id="map_url" placeholder="Map URL" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="label" for="latitude">Latitude</label>
+                      <input type="number" step="0.000001" class="form-control" name="latitude" id="latitude" placeholder="e.g. 15.1312">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="label" for="longitude">Longitude</label>
+                      <input type="number" step="0.000001" class="form-control" name="longitude" id="longitude" placeholder="e.g. 15.1312">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="label" for="img_url">Image URL</label>
+                      <input type="url" class="form-control" name="img_url" id="img_url" placeholder="Image URL" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="label" for="city">City</label>
+                      <input type="text" class="form-control" name="city" id="city" placeholder="City" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="label" for="country">Country</label>
+                      <input type="text" class="form-control" name="country" id="country" placeholder="Country" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="label" for="location">Full address</label>
+                      <input type="text" class="form-control" name="location" id="location" placeholder="Full address" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="label" for="seats">Seats</label>
+                      <input type="range" class="form-control" id="seats" name="seats" min="0" max="100" oninput="this.nextElementSibling.value = this.value">
+                      <output>0</output>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="label" for="coffee_price">Coffee Price In $</label>
+                      <input type="number" step="0.01" class="form-control" name="coffee_price" id="coffee_price" placeholder="e.g. 15">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="label">Has toilet?</label>
+                      <br>
+                      <label class="label" for="have_toilet">Yes</label>
+                      <input type="radio" id="have_toilet" name="has_toilet" value="true">
+                      <label class="label" for="no_toilets">No</label>
+                      <input type="radio" id="no_toilets" name="has_toilet" value="">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="label">Has Wi-Fi?</label>
+                      <br>
+                      <input type="radio" id="have_wifi" name="has_wifi" value="true">
+                      <label class="label" for="have_wifi">Yes</label>
+                      <input type="radio" id="no_wifi" name="has_wifi" value="">
+                      <label class="label" for="no_wifi">No</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="label">Has Sockets?</label>
+                      <br>
+                      <input type="radio" id="have_sockets" name="has_sockets" value="true">
+                      <label class="label" for="have_sockets">Yes</label>
+                      <input type="radio" id="no_sockets" name="has_sockets" value="">
+                      <label class="label" for="no_sockets">No</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="label">Can take calls?</label>
+                      <br>
+                      <input type="radio" id="have_calls" name="can_take_calls" value="true">
+                      <label class="label" for="have_calls">Yes</label>
+                      <input type="radio" id="no_calls" name="can_take_calls" value="">
+                      <label class="label" for="no_calls">No</label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="label">Can pay with card?</label>
+                      <br>
+                      <input type="radio" id="have_card" name="can_pay_with_card" value="true">
+                      <label class="label" for="have_card">Yes</label>
+                      <input type="radio" id="no_card" name="can_pay_with_card" value="">
+                      <label class="label" for="no_card">No</label>
+
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="label" for="description">Description</label>
+                      <textarea name="description" class="form-control" id="description" cols="30" rows="4" placeholder="Description"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input type="submit" value="Submit" class="btn btn-primary">
+                      <div class="submitting"></div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+{% include "header.html" %}
+
+
+      <div class="container">
+        <div class="section-heading">
+          <h2>Cafe review</h2>
+          <div class="line-dec"></div>
+          <span>The best work and study-friendly cafes, restaurants, and hotel lobbies.
+            Find venues with free and reliable Wi-Fi hotspots, ample power sockets,
+            and comfy seating areas.</span>
+        </div>
+        <div class="row">
+          <div class="isotope-wrapper">
+
+            <div class="isotope-box">
+{% for i in all_cafes %}
+
+              <div class="isotope-item" data-type="nature">
+                <figure class="snip1321">
+                  <img src="{{i.img_url}}" alt="sq-sample26" />
+                  <figcaption>
+                    <a href="{{url_for('info', id=i.id)}}">
+                      {% if i.rating == 1: %}
+                      <i class="fa fa-star-half"></i>
+                      {% elif i.rating == 2: %}
+                      <i class="fa fa-star"></i>
+                      {% elif i.rating == 3: %}
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star-half"></i>
+                      {% elif i.rating == 4: %}
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      {% elif i.rating == 5: %}
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star-half"></i>
+                      {% elif i.rating == 6: %}
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      {% elif i.rating == 7: %}
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star-half"></i>
+                      {% elif i.rating == 8: %}
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      {% elif i.rating == 9: %}
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star-half"></i>
+                      {% elif i.rating == 10: %}
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      {% endif %}
+                    <h4>{{i.name}}</h4>
+                    <span>{{i.location}}, {{i.city}}</span>
+                      </a>
+                  </figcaption>
+                </figure>
+              </div>
+
+{% endfor %}
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% include "footer.html" %}
